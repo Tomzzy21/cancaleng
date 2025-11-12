@@ -3,34 +3,48 @@ import { PROJECTS, PORTFOLIO_CATEGORIES } from '../constants';
 import type { Project } from '../types';
 import OptimizedImage from './OptimizedImage';
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-  <div className="group bg-white/5 hover:bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#D4FF00]/10 flex flex-col h-full">
-    <div className="relative overflow-hidden" style={{
-      width: '100%',
-      aspectRatio: '3/4',
-      backgroundColor: '#1f2937',
-    }}>
-      <div className="absolute inset-0">
-        <OptimizedImage 
-          src={project.imageUrl} 
-          alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          style={{ objectPosition: 'center top' }}
-          quality={80}
-          width={800}
-          height={1067}
-        />
-      </div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-          <div className="w-12 h-1 bg-[#D4FF00] mt-3 mb-4"></div>
-          <p className="text-gray-300 text-sm">{project.category}</p>
+const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+  
+  return (
+    <div 
+      className="group bg-white/5 hover:bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#D4FF00]/10 flex flex-col h-full"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div className="relative overflow-hidden" style={{
+        width: '100%',
+        aspectRatio: '3/4',
+        backgroundColor: '#1f2937',
+      }}>
+        <div className="absolute inset-0" style={{
+          transform: isHovered ? 'scale(1.02)' : 'scale(1)',
+          transition: 'transform 700ms ease-in-out',
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center'
+        }}>
+          <OptimizedImage 
+            src={project.imageUrl} 
+            alt={project.title} 
+            className="w-full h-full object-cover"
+            width={800}
+            height={1067}
+          />
+        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+          <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+            <div className="w-12 h-1 bg-[#D4FF00] mt-3 mb-4"></div>
+            <p className="text-gray-300 text-sm">{project.category}</p>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Portfolio: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
