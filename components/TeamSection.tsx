@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Users, Award, Briefcase, Heart } from 'lucide-react';
 import AnimatedNumber from './AnimatedNumber';
-import ScrollAnimation from './ScrollAnimation';
 
 const TeamSection: React.FC = () => {
   // Animation variants
@@ -29,87 +28,92 @@ const TeamSection: React.FC = () => {
   ];
 
   return (
-    <section id="team" className="relative py-24 overflow-hidden">
+    <section className="relative py-24 overflow-hidden">
       {/* Background Elements */}
-      <ScrollAnimation amount={0.1} direction="glow" duration={1.5}>
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#111312] opacity-90"></div>
-          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
-        </div>
-      </ScrollAnimation>
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] to-[#111312] opacity-90"></div>
+        <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5"></div>
+      </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <ScrollAnimation direction="up" delay={0.2}>
-          <div className="text-center max-w-4xl mx-auto mb-16">
-            <span className="inline-block text-[#D4FF00] font-semibold mb-3">Our Strength</span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-              Meet the <span className="text-[#D4FF00]">Innovators</span> Behind Our Success
-            </h2>
-            <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto">
-              A talented collective of engineers, designers, and problem-solvers dedicated to pushing boundaries and delivering exceptional results.
-            </p>
-          </div>
-        </ScrollAnimation>
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center max-w-4xl mx-auto mb-16"
+        >
+          <span className="inline-block text-[#D4FF00] font-semibold mb-3">Our Strength</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+            Meet the <span className="text-[#D4FF00]">Innovators</span> Behind Our Success
+          </h2>
+          <p className="mt-6 text-gray-400 text-lg max-w-2xl mx-auto">
+            A talented collective of engineers, designers, and problem-solvers dedicated to pushing boundaries and delivering exceptional results.
+          </p>
+        </motion.div>
 
         {/* Main Team Showcase */}
         <div className="relative">
-          {/* Team Photo */}
-          <ScrollAnimation direction="zoom" delay={0.4}>
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl"
-            >
-              <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative bg-black/20">
-                <img
-                  src="/group-photo.jpg"
-                  alt="Cancal Engineering Team"
-                  className="w-full h-full object-cover object-center"
-                />
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                
-                {/* Floating elements */}
-                <motion.div 
-                  animate={{
-                    y: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 4,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="absolute -left-5 -top-5 w-24 h-24 rounded-full bg-[#D4FF00] mix-blend-overlay opacity-20"
-                />
-                <motion.div 
-                  animate={{
-                    y: [0, 15, 0],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 0.5
-                  }}
-                  className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-[#D4FF00] mix-blend-overlay opacity-20"
-                />
-              </div>
-            </motion.div>
-          </ScrollAnimation>
+          {/* Team Photo - Replace with your actual team photo */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl"
+          >
+            <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative bg-black/20">
+              <img
+                src="/group-photo.jpg"
+                alt="Cancal Engineering Team"
+                className="w-full h-full object-cover object-center"
+              />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+              
+              {/* Floating elements */}
+              <motion.div 
+                animate={{
+                  y: [0, -10, 0],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="absolute -left-5 -top-5 w-24 h-24 rounded-full bg-[#D4FF00] mix-blend-overlay opacity-20"
+              />
+              <motion.div 
+                animate={{
+                  y: [0, 15, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+                className="absolute -right-8 -bottom-8 w-32 h-32 rounded-full bg-[#D4FF00] mix-blend-overlay opacity-20"
+              />
+            </div>
+          </motion.div>
 
           {/* Stats Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 md:mt-24">
+          <motion.div 
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 md:mt-24"
+          >
             {stats.map((stat, index) => {
               const Icon = stat.icon;
               return (
-                <ScrollAnimation 
+                <motion.div 
                   key={stat.label}
-                  direction="up"
-                  delay={0.2 + (index * 0.1)}
-                  className="bg-[#181A19] border border-white/10 p-6 rounded-2xl text-center hover:bg-[#1f211f] transition-all duration-500 hover:border-[#D4FF00]/30 hover:shadow-lg hover:shadow-[#D4FF00]/10"
+                  variants={item}
+                  className="bg-[#181A19] border border-white/10 p-6 rounded-2xl text-center hover:bg-[#1f211f] transition-colors duration-300"
                 >
                   <div className="w-14 h-14 bg-[#D4FF00]/10 rounded-full flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-6 h-6 text-[#D4FF00]" />
@@ -121,14 +125,20 @@ const TeamSection: React.FC = () => {
                     </span>
                   </div>
                   <p className="text-gray-400 text-sm">{stat.label}</p>
-                </ScrollAnimation>
+                </motion.div>
               );
             })}
-          </div>
+          </motion.div>
         </div>
 
         {/* Team CTA */}
-        <ScrollAnimation direction="fade" delay={0.8} className="mt-20 text-center">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.6 }}
+          className="mt-20 text-center"
+        >
           <h3 className="text-2xl md:text-3xl font-bold mb-6">
             Meet the Team Behind Your Success
           </h3>

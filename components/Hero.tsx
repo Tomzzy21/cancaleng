@@ -2,12 +2,10 @@ import React from 'react';
 import { HERO_IMAGES, AWARDS } from '../constants';
 import { ArrowRightIcon, HeroLogo } from './icons';
 import TypingAnimation from './TypingAnimation';
-import ScrollAnimation from './ScrollAnimation';
-import { motion } from 'framer-motion';
 
 const Hero: React.FC = () => {
   return (
-    <section id="home" className="py-16 sm:py-24 relative overflow-hidden">
+    <section className="py-16 sm:py-24 relative">
       {/* 
         This grid uses a mobile-first source order. 
         On large screens, grid-placement utilities rearrange elements into the desired staggered layout.
@@ -17,98 +15,39 @@ const Hero: React.FC = () => {
         {/* === START: MOBILE-FIRST SOURCE ORDER === */}
 
         {/* 1. Headline Part 1: "Your" */}
-        <ScrollAnimation direction="right" delay={0.2} className="lg:col-span-7 lg:row-start-1 text-center lg:text-left">
+        <div className="lg:col-span-7 lg:row-start-1 text-center lg:text-left">
           <div className="inline-flex flex-col lg:flex-row items-center gap-4">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3, type: 'spring' }}
-            >
-              <HeroLogo className="h-12 w-auto flex-shrink-0" />
-            </motion.div>
-            <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white">
-              <span className="inline-block">Your</span>
-            </div>
+            <HeroLogo className="h-12 w-auto flex-shrink-0" />
+            <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white">Your</div>
           </div>
-        </ScrollAnimation>
+        </div>
         
         {/* 2. Headline Part 2: "#1 Engineering solution" as one phrase */}
-        <ScrollAnimation 
-          direction="up" 
-          delay={0.4}
-          className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white text-center lg:text-left lg:col-start-1 lg:col-span-12 xl:col-span-10 xl:col-start-2 lg:row-start-2 px-4 sm:px-0"
-        >
+        <div className="text-3xl xs:text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white text-center lg:text-left lg:col-start-1 lg:col-span-12 xl:col-span-10 xl:col-start-2 lg:row-start-2 px-4 sm:px-0">
           <div className="flex flex-nowrap justify-center lg:justify-start items-baseline gap-1 xs:gap-2 overflow-x-visible">
-            <motion.span 
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ 
-                type: 'spring',
-                stiffness: 100,
-                damping: 10,
-                delay: 0.2
-              }}
-              className="bg-[#D4FF00] text-black rounded-md px-1 xs:px-2 leading-none inline-flex items-center h-[1em] shadow-[0_0_15px_3px_rgba(212,255,0,0.7)] whitespace-nowrap"
-            >
-              #1
-            </motion.span>
-            <motion.span 
-              initial={{ x: 20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ delay: 0.3 }}
-              className="whitespace-nowrap"
-            >
-              Engineering solution
-            </motion.span>
+            <span className="bg-[#D4FF00] text-black rounded-md px-1 xs:px-2 leading-none inline-flex items-center h-[1em] shadow-[0_0_15px_3px_rgba(212,255,0,0.7)] whitespace-nowrap">#1</span>
+            <span className="whitespace-nowrap">Engineering solution</span>
           </div>
-        </ScrollAnimation>
+        </div>
 
         {/* 3. Headline Part 3: Typing Animation */}
-        <ScrollAnimation 
-          direction="left" 
-          delay={0.6}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white text-center lg:text-right lg:col-span-4 lg:col-start-9 lg:row-start-3 lg:self-end"
-        >
-          <TypingAnimation />
-        </ScrollAnimation>
+        <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white text-center lg:text-right lg:col-span-4 lg:col-start-9 lg:row-start-3 lg:self-end">
+            <TypingAnimation />
+        </div>
 
         {/* 4. Subheading (gets moved to top-right on desktop) */}
-        <ScrollAnimation 
-          direction="fade" 
-          delay={0.8}
-          className="lg:col-span-5 lg:col-start-8 lg:row-start-1 flex items-center"
-        >
+        <div className="lg:col-span-5 lg:col-start-8 lg:row-start-1 flex items-center">
           <p className="text-gray-300 text-base leading-relaxed max-w-sm mx-auto lg:ml-auto text-center lg:text-left">
             From concept to commissioning, we provide end-to-end electrical, mechanical, and automotive solutions that drive efficiency and save costs for our industrial and commercial partners.
           </p>
-        </ScrollAnimation>
+        </div>
 
         {/* 5. Credibility Features (gets moved to bottom-left on desktop) */}
-        <ScrollAnimation 
-          direction="up" 
-          delay={1}
-          className="lg:col-span-4 lg:row-start-3 lg:self-end space-y-3 flex flex-col items-center lg:items-start"
-        >
-          <motion.div 
-            className="flex items-center gap-2"
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 1.2 }}
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ 
-                delay: 1.1,
-                type: 'spring',
-                stiffness: 500,
-                damping: 15
-              }}
-            >
-              <ArrowRightIcon className="text-[#D4FF00] w-4 h-4 flex-shrink-0"/>
-            </motion.div>
+        <div className="lg:col-span-4 lg:row-start-3 lg:self-end space-y-3 flex flex-col items-center lg:items-start">
+          <div className="flex items-center gap-2">
+            <ArrowRightIcon className="text-[#D4FF00] w-4 h-4 flex-shrink-0"/>
             <span className="text-[#D4FF00] font-medium text-sm">Trusted by Industry Leaders</span>
-          </motion.div>
+          </div>
           <div className="flex items-center gap-2">
             <ArrowRightIcon className="text-[#D4FF00] w-4 h-4 flex-shrink-0"/>
             <span className="text-[#D4FF00] font-medium text-sm">Specialists in Green Energy</span>
