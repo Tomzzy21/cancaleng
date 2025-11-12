@@ -9,16 +9,30 @@ const Header: React.FC = () => {
   const [currentPath, setCurrentPath] = useState('');
 
   useEffect(() => {
-    // Ensure this runs only on the client-side
-    setCurrentPath(window.location.pathname);
+    // Handle hash-based navigation
+    const handleHashChange = () => {
+      setCurrentPath(window.location.hash || '#home');
+    };
+
+    // Set initial hash if none exists
+    if (!window.location.hash) {
+      window.location.hash = 'home';
+    } else {
+      handleHashChange();
+    }
+
+    // Add event listener for hash changes
+    window.addEventListener('hashchange', handleHashChange);
 
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden';
     } else {
       document.body.style.overflow = 'unset';
     }
-    // Cleanup function to reset overflow when component unmounts
+
+    // Cleanup function
     return () => {
+      window.removeEventListener('hashchange', handleHashChange);
       document.body.style.overflow = 'unset';
     };
   }, [isMenuOpen]);
@@ -31,29 +45,53 @@ const Header: React.FC = () => {
     setIsMenuOpen(false);
   }
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    const element = document.querySelector(hash);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      // Update URL without triggering a page reload
+      window.history.pushState(null, '', `${window.location.pathname}${hash}`);
+      setCurrentPath(hash);
+      closeMenu();
+    }
+  };
+
   return (
     <header className="py-6">
       <div className="flex justify-between items-center">
-        <a href="./index.html" className="flex items-center gap-3 z-50">
+        <a 
+          href="#home" 
+          className="flex items-center gap-3 z-50"
+          onClick={(e) => scrollToSection(e, '#home')}
+        >
           <Logo className="h-12 w-auto" />
           <span className="text-white text-xl font-bold hidden sm:block">Cancal Engineering</span>
         </a>
         <nav className="hidden lg:flex items-center gap-8">
           {NAV_LINKS.map((link: NavLink) => {
-            const linkPath = link.href.split('#')[0];
-            const cleanLinkPath = linkPath.startsWith('./') ? linkPath.substring(1) : linkPath;
-            const isActive = currentPath === cleanLinkPath || (currentPath === '/' && cleanLinkPath === '/index.html');
+            const hash = link.href;
+            const isActive = currentPath === hash || (hash === '#home' && !currentPath);
             return (
-                <a key={link.label} href={link.href} className={`transition-colors ${isActive ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}`}>
-                  {link.label}
-                </a>
+              <a 
+                key={link.label} 
+                href={hash}
+                onClick={(e) => scrollToSection(e, hash)}
+                className={`transition-colors ${isActive ? 'text-white font-bold' : 'text-gray-300 hover:text-white'}`}
+              >
+                {link.label}
+              </a>
             )
           })}
         </nav>
         <div className="hidden lg:block">
-            <a href="./index.html#contact" className="bg-[#D4FF00] text-black font-semibold px-6 py-3 rounded-full hover:bg-opacity-90 transition-all">
-              Contact Us
-            </a>
+          <a 
+            href="#contact" 
+            onClick={(e) => scrollToSection(e, '#contact')}
+            className="bg-[#D4FF00] text-black font-semibold px-6 py-3 rounded-full hover:bg-opacity-90 transition-all"
+          >
+            Contact Us
+          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -65,23 +103,50 @@ const Header: React.FC = () => {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`lg:hidden fixed inset-0 bg-[#111312] z-40 flex flex-col items-center justify-center transition-opacity duration-300 ${isMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
-          <nav className="flex flex-col items-center gap-8">
-            {NAV_LINKS.map((link: NavLink) => (
-              <a 
-                key={link.label} 
-                href={link.href} 
-                className="text-3xl text-gray-300 hover:text-white transition-colors"
-                onClick={closeMenu}
-              >
-                {link.label}
-              </a>
-            ))}
+      <div className={`lg:hidden fixed inset-0 bg-black bg-opacity-90 z-40 transition-opacity duration-300 ${isMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+        <div className="container mx-auto px-4 py-24 h-full flex flex-col items-center justify-center">
+          <nav className="flex flex-col items-center space-y-8 text-2xl">
+            {NAV_LINKS.map((link: NavLink) => {
+              const hash = link.href;
+              return (
+                <a 
+                  key={link.label} 
+                  href={hash}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const element = document.querySelector(hash);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                      window.history.pushState(null, '', `${window.location.pathname}${hash}`);
+                      setCurrentPath(hash);
+                      closeMenu();
+                    }
+                  }}
+                  className={`${currentPath === hash ? 'text-white font-bold' : 'text-gray-300 hover:text-white'} transition-colors`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
+            <a 
+              href="#contact" 
+              onClick={(e) => {
+                e.preventDefault();
+                const element = document.querySelector('#contact');
+                if (element) {
+                  element.scrollIntoView({ behavior: 'smooth' });
+                  window.history.pushState(null, '', `${window.location.pathname}#contact`);
+                  setCurrentPath('#contact');
+                  closeMenu();
+                }
+              }}
+              className="bg-[#D4FF00] text-black font-semibold px-6 py-3 rounded-full hover:bg-opacity-90 transition-all mt-4"
+            >
+              Contact Us
+            </a>
           </nav>
-          <a href="./index.html#contact" className="mt-12 bg-[#D4FF00] text-black font-semibold px-8 py-4 rounded-full hover:bg-opacity-90 transition-all text-lg" onClick={closeMenu}>
-            Contact Us
-          </a>
         </div>
+      </div>
     </header>
   );
 };
