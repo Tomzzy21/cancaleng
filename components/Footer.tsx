@@ -21,7 +21,7 @@ const Footer: React.FC = () => {
                     <p><strong className="text-white">Address:</strong> 31, Ekero road, Beside Brainfield School, Abule-Egba, Lagos.</p>
                 </div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-2 gap-8">
                 <div>
                     <h4 className="font-bold text-white mb-4">Company Info</h4>
                     <ul className="space-y-3">
@@ -34,14 +34,6 @@ const Footer: React.FC = () => {
                     <h4 className="font-bold text-white mb-4">Services</h4>
                     <ul className="space-y-3">
                         {FOOTER_LINKS.services.map(link => (
-                             <li key={link.label}><a href={link.href} className="text-gray-400 hover:text-white">{link.label}</a></li>
-                        ))}
-                    </ul>
-                </div>
-                 <div>
-                    <h4 className="font-bold text-white mb-4">Legal</h4>
-                    <ul className="space-y-3">
-                        {FOOTER_LINKS.legal.map(link => (
                              <li key={link.label}><a href={link.href} className="text-gray-400 hover:text-white">{link.label}</a></li>
                         ))}
                     </ul>
