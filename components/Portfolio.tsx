@@ -4,33 +4,28 @@ import type { Project } from '../types';
 import OptimizedImage from './OptimizedImage';
 
 const ProjectCard: React.FC<{ project: Project }> = ({ project }) => (
-  <div className="bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl p-4 h-full flex flex-col">
-    <div className="overflow-hidden rounded-2xl flex-1" style={{
+  <div className="group bg-white/5 hover:bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#D4FF00]/10 flex flex-col h-full">
+    <div className="relative overflow-hidden" style={{
       width: '100%',
-      position: 'relative',
-      overflow: 'hidden',
+      aspectRatio: '3/4',
       backgroundColor: '#1f2937',
-      aspectRatio: '16/9'
     }}>
-      <OptimizedImage 
-        src={project.imageUrl} 
-        alt={project.title} 
-        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-        quality={75}
-        width={800}
-        height={450}
-      />
-    </div>
-    <div className="mt-6">
-      <h3 className="text-2xl font-bold">{project.title}</h3>
-      <div className="mt-4 flex flex-wrap gap-x-8 gap-y-2 text-gray-400">
-        <div>
-          <p className="text-sm">Category</p>
-          <p className="text-white font-medium">{project.category}</p>
-        </div>
-        <div>
-          <p className="text-sm">Year</p>
-          <p className="text-white font-medium">{project.year}</p>
+      <div className="absolute inset-0">
+        <OptimizedImage 
+          src={project.imageUrl} 
+          alt={project.title} 
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          style={{ objectPosition: 'center top' }}
+          quality={80}
+          width={800}
+          height={1067}
+        />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+          <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+          <div className="w-12 h-1 bg-[#D4FF00] mt-3 mb-4"></div>
+          <p className="text-gray-300 text-sm">{project.category}</p>
         </div>
       </div>
     </div>
