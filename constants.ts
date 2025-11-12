@@ -11,10 +11,10 @@ import {
 } from './components/icons';
 
 export const NAV_LINKS: NavLink[] = [
-  { href: './index.html', label: 'Home' },
-  { href: './services.html', label: 'Services' },
-  { href: './portfolio.html', label: 'Portfolio' },
-  { href: './index.html#faq', label: 'FAQs' },
+  { href: '/', label: 'Home' },
+  { href: '/services', label: 'Services' },
+  { href: '/portfolio', label: 'Portfolio' },
+  { href: '/#faq', label: 'FAQs' },
 ];
 
 export const CLIENT_LOGOS: React.FC<React.SVGProps<SVGSVGElement>>[] = [
