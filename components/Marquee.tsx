@@ -13,13 +13,33 @@ const logos = [
     { name: 'rensource', path: '/rensource.PNG' }
 ];
 
+// Preload critical images
+const preloadImages = () => {
+  return (
+    <>
+      {logos.map((logo, index) => (
+        <link 
+          key={`preload-${index}`} 
+          rel="preload" 
+          as="image" 
+          href={logo.path} 
+          imageSrcSet={`${logo.path} 1x`}
+        />
+      ))}
+    </>
+  );
+};
+
 const MarqueeItem: React.FC<{ logo: { name: string; path: string } }> = ({ logo }) => (
-    <div className="flex items-center justify-center shrink-0 px-6 h-12">
+    <div className="flex items-center justify-center shrink-0 px-6 h-16 w-40">
         <img 
             src={logo.path} 
             alt={logo.name} 
-            className="h-10 w-auto object-contain"
-            loading="lazy"
+            className="h-16 w-auto max-h-16 object-contain"
+            width={160}
+            height={64}
+            loading="eager"
+            style={{ maxHeight: '4rem' }}
         />
     </div>
 );
@@ -42,8 +62,20 @@ const Marquee: React.FC = () => {
     // Duplicate the logos to create a seamless loop
     const duplicatedLogos = [...logos, ...logos];
 
+    // Preload images in the head
+    if (typeof document !== 'undefined') {
+        const head = document.head;
+        logos.forEach(logo => {
+            const link = document.createElement('link');
+            link.rel = 'preload';
+            link.as = 'image';
+            link.href = logo.path;
+            head.appendChild(link);
+        });
+    }
+
     return (
-        <div className="bg-[#D4FF00] py-4 overflow-hidden">
+        <div className="bg-[#D4FF00] py-6 overflow-hidden">
             <div className="w-full inline-flex flex-nowrap">
                 <div className="flex items-center justify-center animate-marquee">
                     {duplicatedLogos.map((logo, index) => (

@@ -25,6 +25,7 @@ export interface FeaturedArticle {
 }
 
 export interface Project {
+  id: string;
   title: string;
   category: string;
   year: string;

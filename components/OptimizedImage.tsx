@@ -6,6 +6,7 @@ interface OptimizedImageProps {
   className?: string;
   width?: number;
   height?: number;
+  fillTop?: boolean;
 }
 
 const OptimizedImage: React.FC<OptimizedImageProps> = ({
@@ -14,6 +15,7 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
   className = '',
   width,
   height,
+  fillTop = false
 }) => {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -34,38 +36,41 @@ const OptimizedImage: React.FC<OptimizedImageProps> = ({
     );
   }
 
+  const containerStyle: React.CSSProperties = {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    backgroundColor: '#1f2937',
+    transform: 'translateZ(0)',
+    backfaceVisibility: 'hidden',
+    overflow: 'hidden',
+  };
+
+  const imageStyle: React.CSSProperties = {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    objectFit: 'cover',
+    objectPosition: 'center top',
+    opacity: imgLoaded ? 1 : 0,
+    transition: 'opacity 0.5s ease-in-out',
+    willChange: 'opacity',
+  };
+
   return (
     <div 
-      className={`${className} overflow-hidden`}
-      style={{
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-        minHeight: height ? `${height}px` : '400px',
-        transform: 'translateZ(0)', // Force GPU acceleration
-        backfaceVisibility: 'hidden',
-        perspective: 1000, // Improve 3D rendering
-      }}
+      className={className}
+      style={containerStyle}
     >
       <img 
         src={src}
         alt={alt}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          objectPosition: 'center',
-          opacity: imgLoaded ? 1 : 0,
-          transition: 'opacity 0.3s ease-in-out',
-          imageRendering: 'crisp-edges',
-          transform: 'translateZ(0)', // Force GPU acceleration
-          backfaceVisibility: 'hidden', // Improve rendering performance
-          transformStyle: 'preserve-3d', // Better 3D rendering
-          willChange: 'opacity, transform', // Optimize animations
-        }}
+        style={imageStyle}
         loading="lazy"
         onLoad={() => setImgLoaded(true)}
         onError={() => setImgError(true)}

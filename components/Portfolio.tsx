@@ -3,43 +3,41 @@ import { PROJECTS, PORTFOLIO_CATEGORIES } from '../constants';
 import type { Project } from '../types';
 import OptimizedImage from './OptimizedImage';
 
-const ProjectCard: React.FC<{ project: Project }> = ({ project }) => {
-  const [isHovered, setIsHovered] = React.useState(false);
+// Preload first few portfolio images
+const preloadPortfolioImages = (projects: Project[]) => {
+  if (typeof document === 'undefined') return null;
   
+  // Preload first 3 images
+  return projects.slice(0, 3).map((project, index) => (
+    <link 
+      key={`preload-${index}`}
+      rel="preload"
+      as="image"
+      href={project.imageUrl}
+      imageSrcSet={project.imageUrl}
+    />
+  ));
+};
+
+const ProjectCard: React.FC<{ project: Project; priority?: boolean }> = ({ project }) => {
   return (
-    <div 
-      className="group bg-white/5 hover:bg-white/10 backdrop-blur-lg border border-white/10 rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-lg hover:shadow-[#D4FF00]/10 flex flex-col h-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="relative overflow-hidden" style={{
-        width: '100%',
-        aspectRatio: '3/4',
-        backgroundColor: '#1f2937',
-      }}>
-        <div className="absolute inset-0" style={{
-          transform: isHovered ? 'scale(1.02)' : 'scale(1)',
-          transition: 'transform 700ms ease-in-out',
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}>
-          <OptimizedImage 
-            src={project.imageUrl} 
-            alt={project.title} 
-            className="w-full h-full object-cover"
-            width={800}
-            height={1067}
-          />
-        </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
-          <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-            <div className="w-12 h-1 bg-[#D4FF00] mt-3 mb-4"></div>
-            <p className="text-gray-300 text-sm">{project.category}</p>
+    <div className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl overflow-hidden flex flex-col w-full h-full transition-all duration-300 hover:border-white/20">
+      <div className="relative w-full flex-1 flex flex-col" style={{ backgroundColor: '#1f2937' }}>
+        <div className="relative w-full pt-[100%]">
+          <div className="absolute inset-0 w-full h-full">
+            <OptimizedImage 
+              src={project.imageUrl} 
+              alt={project.title} 
+              width={800}
+              height={800}
+              fillTop={true}
+            />
           </div>
+        </div>
+        <div className="bg-gradient-to-t from-black/90 via-black/50 to-transparent p-6">
+          <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+          <div className="w-12 h-1 bg-[#D4FF00] mt-3 mb-4"></div>
+          <p className="text-gray-300 text-sm">{project.category}</p>
         </div>
       </div>
     </div>
@@ -50,6 +48,11 @@ const Portfolio: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const projectsPerPage = 6;
+  
+  // Preload images for first page
+  React.useEffect(() => {
+    preloadPortfolioImages(PROJECTS.slice(0, 3));
+  }, []);
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === 'All') {
@@ -112,9 +115,13 @@ const Portfolio: React.FC = () => {
       </div>
 
       {/* Projects Grid */}
-      <div id="portfolio-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div id="portfolio-grid" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {paginatedProjects.map((project, index) => (
-          <ProjectCard key={`${project.title}-${index}`} project={project} />
+          <ProjectCard 
+            key={project.id} 
+            project={project} 
+            priority={index < 3} // First 3 images get higher priority
+          />
         ))}
       </div>
 
