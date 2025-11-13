@@ -66,7 +66,7 @@ const Header: React.FC = () => {
           onClick={(e) => scrollToSection(e, '#home')}
         >
           <Logo className="h-12 w-auto" />
-          <span className="text-white text-xl font-bold hidden sm:block">Cancal Engineering</span>
+          <span className="text-white text-lg md:text-xl font-bold">Cancal Engineering</span>
         </a>
         <nav className="hidden lg:flex items-center gap-8">
           {NAV_LINKS.map((link: NavLink) => {
