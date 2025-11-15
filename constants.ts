@@ -299,19 +299,20 @@ export const FAQS: FAQItem[] = [
 
 export const FOOTER_LINKS = {
     company: [
-        { href: './index.html', label: 'Home' },
-        { href: './portfolio.html', label: 'Portfolio' },
-        { href: './services.html', label: 'Services' },
-        { href: './index.html#faq', label: 'FAQs' },
-        { href: './index.html#contact', label: 'Contact Us' },
+        { href: '#home', label: 'Home' },
+        { href: '#about', label: 'About' },
+        { href: '#services', label: 'Services' },
+        { href: '#latest-work', label: 'Portfolio' },
+        { href: '#faq', label: 'FAQs' },
+        { href: '#contact', label: 'Contact Us' },
     ],
     services: [
-        { href: './services.html#', label: 'EPC' },
-        { href: './services.html#', label: 'Panel Manufacturing' },
-        { href: './services.html#', label: 'Renewable Energy' },
-        { href: './services.html#', 'label': 'Installations' },
-        { href: './services.html#', label: 'Automobile' },
-        { href: './services.html#', label: 'Consultancy' },
+        { href: '#epc', label: 'EPC' },
+        { href: '#panel-manufacturing', label: 'Panel Manufacturing' },
+        { href: '#renewable-energy', label: 'Renewable Energy' },
+        { href: '#installations', label: 'Installations' },
+        { href: '#automobile', label: 'Automobile' },
+        { href: '#consultancy', label: 'Consultancy' },
     ],
     legal: [
         { href: '#', label: 'Terms & Conditions' },

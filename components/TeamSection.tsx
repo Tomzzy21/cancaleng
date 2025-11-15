@@ -63,14 +63,14 @@ const TeamSection: React.FC = () => {
             transition={{ duration: 0.8 }}
             className="relative rounded-3xl overflow-hidden border-2 border-white/10 shadow-2xl"
           >
-            <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative bg-black/20">
+            <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] relative">
               <img
                 src="/group-photo.jpg"
                 alt="Cancal Engineering Team"
                 className="w-full h-full object-cover object-center"
               />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+              {/* Lighter overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent"></div>
               
               {/* Floating elements */}
               <motion.div 

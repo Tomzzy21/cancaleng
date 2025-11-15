@@ -49,7 +49,7 @@ export const TrustedBySection: React.FC = () => {
         <section className="pt-12 pb-4 my-8">
             <div className="text-center max-w-4xl mx-auto px-4 mb-4">
                 <h2 className="text-3xl md:text-4xl font-bold mb-4">Trusted By Leading Brands</h2>
-                <p className="text-lg text-gray-700">
+                <p className="text-lg text-gray-300">
                     Our commitment to excellence has earned us the trust of renowned brands and organizations across different sectors. 
                     Here are some of the clients who have partnered with us to achieve sustainable and innovative results.
                 </p>

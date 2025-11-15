@@ -5,7 +5,7 @@ import TypingAnimation from './TypingAnimation';
 
 const Hero: React.FC = () => {
   return (
-    <section className="py-16 sm:py-24 relative">
+    <section className="pt-8 pb-16 sm:pt-12 sm:pb-24 relative">
       {/* 
         This grid uses a mobile-first source order. 
         On large screens, grid-placement utilities rearrange elements into the desired staggered layout.
@@ -17,7 +17,7 @@ const Hero: React.FC = () => {
         {/* 1. Headline Part 1: "Your" */}
         <div className="lg:col-span-7 lg:row-start-1 text-center lg:text-left">
           <div className="inline-flex flex-col lg:flex-row items-center gap-4">
-            <HeroLogo className="h-12 w-auto flex-shrink-0" />
+            <HeroLogo className="h-12 w-auto flex-shrink-0 hidden lg:block" />
             <div className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white">Your</div>
           </div>
         </div>
@@ -60,10 +60,10 @@ const Hero: React.FC = () => {
         
         {/* 6. Buttons (gets moved to bottom-center on desktop) */}
         <div className="lg:col-span-4 lg:col-start-5 lg:row-start-3 flex flex-row justify-center gap-4 self-end">
-          <a href="./portfolio.html" className="px-5 py-2.5 border border-white rounded-full text-white font-semibold hover:bg-white hover:text-black transition-all duration-300 text-sm whitespace-nowrap">
+          <a href="#portfolio" className="px-5 py-2.5 border border-white rounded-full text-white font-semibold hover:bg-white hover:text-black transition-all duration-300 text-sm whitespace-nowrap">
             Explore Our Projects
           </a>
-          <a href="./index.html#contact" className="px-5 py-2.5 bg-[#D4FF00] rounded-full text-black font-semibold hover:bg-[#c2e600] transition-all text-sm whitespace-nowrap">
+          <a href="#contact" className="px-5 py-2.5 bg-[#D4FF00] rounded-full text-black font-semibold hover:bg-[#c2e600] transition-all text-sm whitespace-nowrap">
             Request a Consultation
           </a>
         </div>
