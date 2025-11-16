@@ -63,7 +63,12 @@ const Hero: React.FC = () => {
           <a href="#portfolio" className="px-5 py-2.5 border border-white rounded-full text-white font-semibold hover:bg-white hover:text-black transition-all duration-300 text-sm whitespace-nowrap">
             Explore Our Projects
           </a>
-          <a href="#contact" className="px-5 py-2.5 bg-[#D4FF00] rounded-full text-black font-semibold hover:bg-[#c2e600] transition-all text-sm whitespace-nowrap">
+          <a 
+            href="https://wa.me/2348026833455?text=Hello%20Cancal%20Engineering,%20I%20would%20like%20to%20request%20a%20consultation" 
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-5 py-2.5 bg-[#D4FF00] rounded-full text-black font-semibold hover:bg-[#c2e600] transition-all text-sm whitespace-nowrap"
+          >
             Request a Consultation
           </a>
         </div>
