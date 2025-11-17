@@ -26,8 +26,8 @@ export const CLIENT_LOGOS: React.FC<React.SVGProps<SVGSVGElement>>[] = [
 ];
 
 export const HERO_IMAGES = {
-    img1: "/optimized/hero.png",
-    img2: "/optimized/hero1.png"
+    img1: "/hero1.jpg",
+    img2: "/hero2.jpg"
 };
 
 export const ABOUT_IMAGE = "/optimized/about us.png";
