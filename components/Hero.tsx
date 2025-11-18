@@ -80,8 +80,18 @@ const Hero: React.FC = () => {
         <div className="h-[350px] md:h-[450px] w-full">
           <img src={HERO_IMAGES.img1} alt="Modern interior design" className="w-full h-full object-cover rounded-3xl"/>
         </div>
-        <div className="h-[350px] md:h-[450px] w-full">
-          <img src={HERO_IMAGES.img2} alt="Cozy living room" className="w-full h-full object-cover rounded-3xl"/>
+        <div className="h-[350px] md:h-[450px] w-full relative">
+          <img 
+            src="/component-procurement.jpg" 
+            alt="Cozy living room" 
+            className="w-full h-full object-cover rounded-3xl md:object-center object-left"
+            style={{
+              objectPosition: '30% center',
+              '@media (min-width: 768px)': {
+                objectPosition: 'center'
+              }
+            }}
+          />
         </div>
       </div>
     </section>
