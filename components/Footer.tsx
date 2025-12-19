@@ -17,8 +17,8 @@ const Footer: React.FC = () => {
                 </p>
                  <div className="mt-6 space-y-2 text-gray-400">
                     <p><strong className="text-white">Email:</strong> <a href="mailto:sales@cancaleng.com" className="hover:text-[#D4FF00]">sales@cancaleng.com</a></p>
-                    <p><strong className="text-white">Phone:</strong> <a href="tel:+2348185205961" className="hover:text-[#D4FF00]">+234 818 520 5961</a></p>
-                    <p><strong className="text-white">Address:</strong> 31, Ekero road, Beside Brainfield School, Abule-Egba, Lagos.</p>
+                    <p><strong className="text-white">Phone:</strong> <a href="tel:+2348026833455" className="hover:text-[#D4FF00]">+234 802 683 3455</a>, <a href="tel:+2349015098001" className="hover:text-[#D4FF00]">+234 901 509 8001</a></p>
+                    <p><strong className="text-white">Address:</strong> 31, Ekoro Road, Beside Brainfield School, Abule Egba, Lagos.</p>
                 </div>
             </div>
             <div className="grid grid-cols-2 gap-8">

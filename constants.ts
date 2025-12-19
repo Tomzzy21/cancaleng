@@ -159,6 +159,34 @@ export const PORTFOLIO_CATEGORIES = [
 
 export const PROJECTS: Project[] = [
   {
+    title: '3200A Totalizing LVSG Panel with EMS System',
+    category: 'Power Control & Management Panels',
+    year: '2024',
+    location: 'Lagos',
+    imageUrl: '/3200a Totalizing LVSG Panel with EMS System.JPG',
+  },
+  {
+    title: 'PCS AC Combiner Panel',
+    category: 'Renewable Energy & Grid Integration Panels',
+    year: '2024',
+    location: 'Lagos',
+    imageUrl: '/PCS AC combiner Panel.JPG',
+  },
+  {
+    title: 'Inverter AC Combiner Panel',
+    category: 'Renewable Energy & Grid Integration Panels',
+    year: '2024',
+    location: 'Abuja',
+    imageUrl: '/Inverter AC Combiner Panel.JPG',
+  },
+  {
+    title: '2000A Distribution Board Panel',
+    category: 'Distribution & Transfer Panels',
+    year: '2024',
+    location: 'Ibadan',
+    imageUrl: '/2000a distribution board panel.JPG',
+  },
+  {
     title: '3200A Synchronizing Panel',
     category: 'Power Control & Management Panels',
     year: '2023',
@@ -186,8 +214,6 @@ export const PROJECTS: Project[] = [
     location: 'Ibadan',
     imageUrl: '/2000a distribution board.PNG',
   },
-  // Moved GTAG Solar Installation to be with other updated entries
-  // Removed duplicate AC Combiner Panel and Schneider Switchgear entries
   {
     title: '800A Dual ATS Panel',
     category: 'Distribution & Transfer Panels',

@@ -10,7 +10,11 @@ const logos = [
     { name: 'greco', path: '/greco.PNG' },
     { name: 'cadbury', path: '/cadbury.PNG' },
     { name: 'daystar', path: '/daystar.PNG' },
-    { name: 'rensource', path: '/rensource.PNG' }
+    { name: 'rensource', path: '/rensource.PNG' },
+    { name: 'darway', path: '/Darway.PNG' },
+    { name: 'energy', path: '/energy.PNG' },
+    { name: 'havenhill', path: '/havenhill.PNG' },
+    { name: 'schneider electric', path: '/schneider electric.PNG' }
 ];
 
 // Preload critical images

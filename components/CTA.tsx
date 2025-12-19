@@ -35,9 +35,14 @@ const CTA: React.FC = () => {
              </div>
              <div>
                 <p className="font-semibold text-gray-300">Call us:</p>
-                <a href="tel:+2348185205961" className="font-semibold text-[#D4FF00] hover:text-white transition-colors">
-                    +234 818 520 5961
-                </a>
+                <div className="space-y-1">
+                  <a href="tel:+2348026833455" className="block font-semibold text-[#D4FF00] hover:text-white transition-colors">
+                      +234 802 683 3455
+                  </a>
+                  <a href="tel:+2349015098001" className="block font-semibold text-[#D4FF00] hover:text-white transition-colors">
+                      +234 901 509 8001
+                  </a>
+                </div>
              </div>
            </div>
         </div>

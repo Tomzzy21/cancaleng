@@ -20,17 +20,27 @@ const preloadPortfolioImages = (projects: Project[]) => {
 };
 
 const ProjectCard: React.FC<{ project: Project; priority?: boolean }> = ({ project }) => {
+  // Special handling for specific projects
+  const getImageClass = (title: string) => {
+    if (title.includes('Inverter AC Combiner Panel')) {
+      return 'object-contain object-bottom';
+    }
+    return '';
+  };
+
   return (
     <div className="group bg-white/5 backdrop-blur-lg border border-white/10 rounded-3xl overflow-hidden flex flex-col w-full h-full transition-all duration-300 hover:border-white/20">
       <div className="relative w-full flex-1 flex flex-col" style={{ backgroundColor: '#1f2937' }}>
-        <div className="relative w-full pt-[100%]">
+        <div className="relative w-full pt-[100%] overflow-hidden">
           <div className="absolute inset-0 w-full h-full">
             <OptimizedImage 
               src={project.imageUrl} 
               alt={project.title} 
               width={800}
               height={800}
-              fillTop={true}
+              fillTop={!project.title.includes('Inverter AC Combiner Panel')}
+              className={getImageClass(project.title)}
+              style={project.title.includes('Inverter AC Combiner Panel') ? { objectPosition: 'center 40%' } : undefined}
             />
           </div>
         </div>
